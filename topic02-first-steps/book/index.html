@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css"
+        type="text/css">
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-light.min.css"
+        rel="stylesheet"/>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script type="text/javascript"
+          src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+  <script type="text/javascript"
+          src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+  <script type="text/javascript"
+          src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script type="text/javascript"
+          src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+  <script type="text/javascript"
+          src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/kotlin.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <style>
+    
+
+body {
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+  font-size:90%;
+  color: black;
+}
+
+p {
+  margin: 0.5em;
+}
+
+pre code {
+  font-family: "Monaco";
+  font-size: 100%;
+}
+
+img {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin:10px;
+}
+
+h1, h2, h3 {
+  border-bottom:thin solid black;
+  margin-bottom: 0.5em;
+  margin-top: 1em;
+}
+
+h1 {
+  font-style:italic;
+  font-size:130%;
+}
+
+h2 {
+  font-size:110%;
+}
+
+h3 {
+  font-size:100%;
+}
+
+
+
+  </style>
+</head>
+
+<body>
+
+
+
+<div class="ui fixed top pointing inverted stackable menu labmenu">
+  <header class="header item">
+    <i id="toc" class="sitemap icon"></i>
+    
+      <a href="../index.html">  First Steps in using GCHi and Haskell  </a>
+    
+  </header>
+  <div class="right tab-menu menu">
+    
+      <a class="item" data-tab="Lab-02">
+        Lab-02
+      </a>
+    
+      <a class="item" data-tab="01">
+        01
+      </a>
+    
+      <a class="item" data-tab="02">
+        02
+      </a>
+    
+      <a class="item" data-tab="03">
+        03
+      </a>
+    
+      <a class="item" data-tab="04">
+        04
+      </a>
+    
+  </div>
+</div>
+
+<div class="ui pushable">
+  <div class="ui inverted labeled icon left inline vertical sidebar menu">
+    <br><br>
+    
+      
+        <a class="item"
+           href="http://maireadmeagher.github.io/haskell-17//topic01-introduction/book/index.html">Links </a>
+      
+    
+      
+        <a class="item"
+           href="http://maireadmeagher.github.io/haskell-17//topic02-first-steps/book/index.html">Lab-02 </a>
+      
+    
+      
+        <a class="item"
+           href="http://maireadmeagher.github.io/haskell-17//topic03-types-and-classes/book/index.html">Lab-03 </a>
+      
+    
+  </div>
+  <div class="pusher" tabindex="-1">
+    <div class="ui basic segment">
+      <br>
+      
+        <div class="ui tab segment lab" data-tab="Lab-02">
+          <h1>Getting Started with GHCi</h1>
+<p>Installing and using GHCi</p>
+
+        </div>
+      
+        <div class="ui tab segment lab" data-tab="01">
+          <h1>Objectives</h1>
+<p>On completion of this lab you should:</p>
+<ul>
+<li><p>have GHC complier and interpreter installed on your laptop.</p>
+</li>
+<li><p>be able to use the GHCi interpreter to test simple examples. </p>
+</li>
+<li><p>be able to run simple Haskell scripts using the GHCI interface.</p>
+</li>
+</ul>
+
+        </div>
+      
+        <div class="ui tab segment lab" data-tab="02">
+          <h1>Installing GHC (Glasgow Haskell Compiler)</h1>
+<ul>
+<li>I am assuming that you are installing GHC on your own laptop.</li>
+</ul>
+<h2>Downloading and installing GHC</h2>
+<ul>
+<li><p>GHC inludes a compiler and an interpreter (GHCi). </p>
+</li>
+<li><p>The environment  can be downloaded from <a href="https://www.haskell.org/ghc/">https://www.haskell.org/ghc/</a>.  </p>
+</li>
+<li><p>OS-specific packages can be easier to use - see <a href="https://www.haskell.org/ghc/distribution_packages.html">https://www.haskell.org/ghc/distribution_packages.html</a></p>
+</li>
+</ul>
+<p><img src="./img/01.png" alt="Choose based on your operating system"></p>
+<ul>
+<li><p>Install the package.</p>
+</li>
+<li><p>Run the interpreter (GHCi) by simply 
+<img src="./img/02.png" alt="typing ghci from terminal"> or running the GHCi app.</p>
+</li>
+</ul>
+<p>(Note that the <code>Prelude</code> prompt when using the command line means that the (standard) Prelude library is loaded.)</p>
+
+        </div>
+      
+        <div class="ui tab segment lab" data-tab="03">
+          <h1>Running simple Haskell programs</h1>
+<ul>
+<li>We can execute small simple programs using GHCi (i for interactive) alone. </li>
+<li>To practice this, firstly run the GHCi interpreter (as per previous page). A prompt is displayed &gt; </li>
+<li>Use GHCi to evaluate the following: </li>
+</ul>
+<h2>Exercise 1</h2>
+<pre><code>2+3</code></pre>
+<h2>Exercise 2</h2>
+<pre><code>2*3</code></pre>
+<h2>Exercise 3</h2>
+<p><code>div</code> is the infix integer division operator (note the quotes character - backward quote)</p>
+<pre><code>7 `div` 2</code></pre>
+<h2>Exercise 4</h2>
+<p>Select the first element of a non-empty list:</p>
+<pre><code>head [1,2,3,4,5]</code></pre>
+<h2>Exercise 5</h2>
+<p>Remove the first elemenet of a non-empty list: </p>
+<pre><code>tail [1,2,3,4,5]</code></pre>
+<h2>Exercise 6</h2>
+<p>Select the first n elements of a list: </p>
+<pre><code>take 3  [1,2,3,4,5]</code></pre>
+<h2>Exercise 7</h2>
+<p>Remove the first n elements of a list: </p>
+<pre><code>drop 3  [1,2,3,4,5]</code></pre>
+<h2>Exercise 8</h2>
+<p>Select the nth element of a list (from index 0): </p>
+<pre><code>[1,2,3,4,5] !! 3</code></pre>
+<h2>Exercise 9</h2>
+<p>Calculate the length of a list:</p>
+<pre><code>length [1,2,3,4,5]</code></pre>
+<h2>Exercise 10</h2>
+<p>Calculate the sum of a list:</p>
+<pre><code>sum [1,2,3,4,5]</code></pre>
+<h2>Exercise 11</h2>
+<p>Calculate the product of a list:</p>
+<pre><code>product [1,2,3,4,5]</code></pre>
+<h2>Exercise 12</h2>
+<p>Append two lists:</p>
+<pre><code>[1,2,3,4,5]  ++ [4,6,7,8]</code></pre>
+<h2>Exercise 13</h2>
+<p>Calculate the reverse of a list:</p>
+<pre><code>reverse [1,2,3,4,5]</code></pre>
+<h2>Exercise 14</h2>
+<p>Prepend an element to a  list:</p>
+<pre><code>1: [2,3,4,5]</code></pre>
+
+        </div>
+      
+        <div class="ui tab segment lab" data-tab="04">
+          <h1>Using GHC</h1>
+<ul>
+<li>To load compiled code. </li>
+<li>Using the terminal, cd to your working directory. (this just makes the loading simpler)</li>
+<li>Create a simple Haskell script:</li>
+</ul>
+<pre><code> main = print (fac 20)
+
+fac 0 = 1
+fac n = n * fac (n-1)</code></pre>
+<p>Call it, e.g.  &#39;Main.hs&#39;</p>
+<ul>
+<li><p><img src="./img/03.png" alt="load the script (Main.hs) "></p>
+<ul>
+<li>This compiles it as well as loading it.  You can now call the fac function: </li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><img src="./img/04.png" alt="run the fac function "></p>
+</li>
+<li><p>You can also call the main function:
+<img src="./img/05.png" alt="run the main function "></p>
+<p>If you make any changes to the script, you need to reload it (thus recompiling it) : </p>
+</li>
+</ul>
+<ul>
+<li><p><img src="./img/06.png" alt="reload the script "></p>
+</li>
+<li><p>A list of GHCi commands is available at <a href="https://downloads.haskell.org/~ghc/7.4.1/docs/html/users_guide/ghci-commands.html">https://downloads.haskell.org/~ghc/7.4.1/docs/html/users_guide/ghci-commands.html</a></p>
+</li>
+<li><p>When you need to use a terminal command, just use :! as in 
+  <img src="./img/07.png" alt="Where am I? "></p>
+</li>
+</ul>
+
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).on('keydown', function(e) {
+  e = e || window.event;
+  var nextTab;
+  switch (e.which || e.keyCode) {
+    case 37: // left
+      nextTab = $('.tab-menu a[data-tab].active').prev('a[data-tab]');
+      if (!nextTab.length) nextTab = $('.tab-menu a[data-tab]').last();
+      nextTab.click();
+      $('.pusher').focus();
+      break;
+
+    case 39: // right
+      nextTab = $('.tab-menu a[data-tab].active').next('a[data-tab]');
+      if (!nextTab.length) nextTab = $('.tab-menu a[data-tab]').first();
+      nextTab.click();
+      $('.pusher').focus();
+      break;
+  }
+});
+
+  $(document).ready(function() {
+  $('img').addClass('ui image');
+
+  $('.ui.embed').embed();
+
+  const $images = $('.lab img');
+  jQuery.each($images, function(i) {
+    if ($images[i].alt.length > 0) {
+      const divImg = $(document.createElement('div')).addClass(
+        'ui basic segment',
+      );
+      $($images[i]).wrap(divImg);
+      const divLabel = $(document.createElement('div')).addClass(
+        'ui blue ribbon label',
+      );
+      divLabel.append($images[i].alt);
+      $(divLabel).insertBefore($images[i]);
+    }
+  });
+
+  $('.ui.menu .item').tab({
+    history: true,
+    historyType: 'hash',
+  });
+
+  $('.popup').popup();
+
+  $('.ui.sidebar')
+    .sidebar({ context: $('.pushable') })
+    .sidebar('setting', 'transition', 'slide out')
+    .sidebar('attach events', '#toc');
+});
+
+</script>
+</body>
+</html>
