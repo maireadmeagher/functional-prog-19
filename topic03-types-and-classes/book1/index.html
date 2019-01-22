@@ -77,13 +77,13 @@ h3 {
   <header class="header item">
     <i id="toc" class="sitemap icon"></i>
     
-      <a href="../index.html">  First Steps in using GCHi and Haskell  </a>
+      <a href="../index.html">  Introduction to Types and Classes  </a>
     
   </header>
   <div class="right tab-menu menu">
     
-      <a class="item" data-tab="Lab-02">
-        Lab-02
+      <a class="item" data-tab="Lab-03">
+        Lab-03
       </a>
     
       <a class="item" data-tab="01">
@@ -96,10 +96,6 @@ h3 {
     
       <a class="item" data-tab="03">
         03
-      </a>
-    
-      <a class="item" data-tab="04">
-        04
       </a>
     
   </div>
@@ -134,9 +130,9 @@ h3 {
     <div class="ui basic segment">
       <br>
       
-        <div class="ui tab segment lab" data-tab="Lab-02">
-          <h1>Getting Started with GHCi</h1>
-<p>Installing and using GHCi</p>
+        <div class="ui tab segment lab" data-tab="Lab-03">
+          <h1>Getting Started Types and using compiler</h1>
+<p>Working through types. </p>
 
         </div>
       
@@ -144,128 +140,191 @@ h3 {
           <h1>Objectives</h1>
 <p>On completion of this lab you should:</p>
 <ul>
-<li><p>have GHC complier and interpreter installed on your laptop.</p>
+<li><p>Understand more about types</p>
 </li>
-<li><p>be able to use the GHCi interpreter to test simple examples. </p>
-</li>
-<li><p>be able to run simple Haskell scripts using the GHCI interface.</p>
+<li><p>be familiar with the Haskell compiler and its error reporting.</p>
 </li>
 </ul>
 
         </div>
       
         <div class="ui tab segment lab" data-tab="02">
-          <h1>Installing GHC (Glasgow Haskell Compiler)</h1>
+          <h1>Naming Values Worksheet</h1>
 <ul>
-<li>I am assuming that you are installing GHC on your own laptop.</li>
-</ul>
-<h2>Downloading and installing GHC</h2>
+<li>The purpose of this worksheet is for you to work through the worksheet. </li>
+<li>Copy and paste  the code into a .hs script. </li>
+<li>Load this script into GHCi. </li>
+<li>Go through the code, section by section.</li>
+<li><p>For example, for the first code snippet, replace the </p>
+<pre><code>pie = undefined</code></pre>
+<p>with </p>
+<pre><code>pie = 3.1416</code></pre>
+</li>
+<li><p>At each stage, test your change by </p>
 <ul>
-<li><p>GHC inludes a compiler and an interpreter (GHCi). </p>
-</li>
-<li><p>The environment  can be downloaded from <a href="https://www.haskell.org/ghc/">https://www.haskell.org/ghc/</a>.  </p>
-</li>
-<li><p>OS-specific packages can be easier to use - see <a href="https://www.haskell.org/ghc/distribution_packages.html">https://www.haskell.org/ghc/distribution_packages.html</a></p>
-</li>
-</ul>
-<p><img src="./img/01.png" alt="Choose based on your operating system"></p>
-<ul>
-<li><p>Install the package.</p>
-</li>
-<li><p>Run the interpreter (GHCi) by simply 
-<img src="./img/02.png" alt="typing ghci from terminal"> or running the GHCi app.</p>
+<li>reloading script</li>
+<li>testing values : e.g. for first snippet, simply type <pre><code>&gt; pie</code></pre>
 </li>
 </ul>
-<p>(Note that the <code>Prelude</code> prompt when using the command line means that the (standard) Prelude library is loaded.)</p>
+</li>
+<li>You should expect to get back the new value of pie.</li>
+</ul>
+<pre><code>--- Naming Values worksheet
+
+
+------------------------------------------------
+-- pi is a real number which is approximately
+-- three and 1,416 ten thousandths. Define a Double
+-- with this approximate value.
+
+pie:: Double               -- Mis-spelling deliberate
+pie = undefined
+
+
+--------------------------------------------------
+-- The formula for the area of a circle is 
+-- pie times r squared, where r is the radius of 
+-- the circle. Define a Double which is the area 
+-- in square centimeters of a circle with diameter 
+-- 10 centimeters.
+
+areaCircleDiameter10:: Double
+areaCircleDiameter10 = undefined
+
+
+----------------------------------------------
+-- Define an Integer that is the number of 
+-- seconds in a week.
+
+secondsIn1Week:: Integer
+secondsIn1Week = undefined
+
+
+---------------------------------------------
+-- Define a List of Integers with the elements
+-- 1 to 10 in increasing order
+
+oneToTen:: [Integer]
+oneToTen = undefined
+
+
+---------------------------------------------
+-- Define a string that is your first name
+
+yourFirstName:: String
+yourFirstName = undefined
+
+
+---------------------------------------------
+-- Define an Integer that is your age
+
+yourAge:: Integer     
+yourAge = undefined
+
+
+---------------------------------------------
+-- Define a Bool truthvalue that is 
+-- (yourAge is greater than 19) or (yourFirstName is &quot;Tim&quot;)
+
+compareName:: Bool
+compareName = undefined
+
+
+---------------------------------------------
+-- Define an Double that is the average of 
+-- 3.0, 7.42, and 24.8
+
+average:: Double
+average = undefined
+
+
+---------------------------------------------
+-- Define an Integer that is the remainder
+-- when 14563 is divided by 22. Hint use the 
+-- &quot;mod&quot; operator. Try it out to see how it works
+
+remainder::Integer 
+remainder = undefined
+
+
+---------------------------------------------
+-- Define a tuple that has your first name 
+-- and your age.
+
+tuple:: (String,Integer)
+tuple = undefined
+
+
+---------------------------------------------
+-- Compute the difference between your
+-- approximation of pie, and the fraction
+-- 22 divided by 7.
+
+difference:: Double
+difference = undefined</code></pre>
 
         </div>
       
         <div class="ui tab segment lab" data-tab="03">
-          <h1>Running simple Haskell programs</h1>
+          <h1>Implicit Types Worksheet</h1>
 <ul>
-<li>We can execute small simple programs using GHCi (i for interactive) alone. </li>
-<li>To practice this, firstly run the GHCi interpreter (as per previous page). A prompt is displayed &gt; </li>
-<li>Use GHCi to evaluate the following: </li>
+<li>The purpose of this worksheet is for you to work through the worksheet. </li>
+<li>Copy and paste  the code into a .hs script. </li>
+<li>Load this script into GHCi. </li>
+<li>Go through the code, section by section, reading the instructions. </li>
 </ul>
-<h2>Exercise 1</h2>
-<pre><code>2+3</code></pre>
-<h2>Exercise 2</h2>
-<pre><code>2*3</code></pre>
-<h2>Exercise 3</h2>
-<p><code>div</code> is the infix integer division operator (note the quotes character - backward quote)</p>
-<pre><code>7 `div` 2</code></pre>
-<h2>Exercise 4</h2>
-<p>Select the first element of a non-empty list:</p>
-<pre><code>head [1,2,3,4,5]</code></pre>
-<h2>Exercise 5</h2>
-<p>Remove the first elemenet of a non-empty list: </p>
-<pre><code>tail [1,2,3,4,5]</code></pre>
-<h2>Exercise 6</h2>
-<p>Select the first n elements of a list: </p>
-<pre><code>take 3  [1,2,3,4,5]</code></pre>
-<h2>Exercise 7</h2>
-<p>Remove the first n elements of a list: </p>
-<pre><code>drop 3  [1,2,3,4,5]</code></pre>
-<h2>Exercise 8</h2>
-<p>Select the nth element of a list (from index 0): </p>
-<pre><code>[1,2,3,4,5] !! 3</code></pre>
-<h2>Exercise 9</h2>
-<p>Calculate the length of a list:</p>
-<pre><code>length [1,2,3,4,5]</code></pre>
-<h2>Exercise 10</h2>
-<p>Calculate the sum of a list:</p>
-<pre><code>sum [1,2,3,4,5]</code></pre>
-<h2>Exercise 11</h2>
-<p>Calculate the product of a list:</p>
-<pre><code>product [1,2,3,4,5]</code></pre>
-<h2>Exercise 12</h2>
-<p>Append two lists:</p>
-<pre><code>[1,2,3,4,5]  ++ [4,6,7,8]</code></pre>
-<h2>Exercise 13</h2>
-<p>Calculate the reverse of a list:</p>
-<pre><code>reverse [1,2,3,4,5]</code></pre>
-<h2>Exercise 14</h2>
-<p>Prepend an element to a  list:</p>
-<pre><code>1: [2,3,4,5]</code></pre>
+<pre><code>----------------------------------
+-- add a type declaration
+-- to each of the named expressions
+i1:: Integer  -- I have done the first one for you
+i1 = 45
 
-        </div>
-      
-        <div class="ui tab segment lab" data-tab="04">
-          <h1>Using GHC</h1>
-<ul>
-<li>To load compiled code. </li>
-<li>Using the terminal, cd to your working directory. (this just makes the loading simpler)</li>
-<li>Create a simple Haskell script:</li>
-</ul>
-<pre><code> main = print (fac 20)
+i2 = &quot;123&quot;
 
-fac 0 = 1
-fac n = n * fac (n-1)</code></pre>
-<p>Call it, e.g.  &#39;Main.hs&#39;</p>
-<ul>
-<li><p><img src="./img/03.png" alt="load the script (Main.hs) "></p>
-<ul>
-<li>This compiles it as well as loading it.  You can now call the fac function: </li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p><img src="./img/04.png" alt="run the fac function "></p>
-</li>
-<li><p>You can also call the main function:
-<img src="./img/05.png" alt="run the main function "></p>
-<p>If you make any changes to the script, you need to reload it (thus recompiling it) : </p>
-</li>
-</ul>
-<ul>
-<li><p><img src="./img/06.png" alt="reload the script "></p>
-</li>
-<li><p>A list of GHCi commands is available at <a href="https://downloads.haskell.org/~ghc/7.4.1/docs/html/users_guide/ghci-commands.html">https://downloads.haskell.org/~ghc/7.4.1/docs/html/users_guide/ghci-commands.html</a></p>
-</li>
-<li><p>When you need to use a terminal command, just use :! as in 
-  <img src="./img/07.png" alt="Where am I? "></p>
-</li>
-</ul>
+i3 = 45 &lt;= i1
+
+i4 = &#39;c&#39;
+
+i5 = [&quot;abc&quot;,&quot;ok&quot;]
+
+i6 = head i5
+
+i7 = tail &quot;abc&quot;  -- Recall a string is a shorthand for a list of Char
+
+i8 = (True,4.5)
+
+i9 = [i1,34]
+
+-------------------------------------------------
+-- For each named expression replace &quot;undefined&quot;
+-- with an expression with the same type as the declaration
+
+
+j1:: (String,Integer)
+j1 = undefined
+
+j2:: [Integer]
+j2 = undefined
+
+j3:: Char
+j3 = undefined
+
+
+j4:: Double
+j4 = undefined
+
+
+j5:: (Integer,String,Integer,Char)
+j5 = undefined
+
+j6:: ([Char],(Bool,String))
+j6 = undefined
+
+j7:: [[Bool]]
+j7 = undefined
+
+j8:: [(String,Bool)]
+j8 = undefined</code></pre>
 
         </div>
       
