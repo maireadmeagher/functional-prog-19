@@ -77,13 +77,13 @@ h3 {
   <header class="header item">
     <i id="toc" class="sitemap icon"></i>
     
-      <a href="../index.html">  Introduction to Types and Classes  </a>
+      <a href="../index.html">  Higher Order Functions  </a>
     
   </header>
   <div class="right tab-menu menu">
     
-      <a class="item" data-tab="Lab-03">
-        Lab-03
+      <a class="item" data-tab="Lab-05">
+        Lab-05
       </a>
     
       <a class="item" data-tab="01">
@@ -135,9 +135,20 @@ h3 {
     <div class="ui basic segment">
       <br>
       
-        <div class="ui tab segment lab" data-tab="Lab-03">
-          <h1>Getting Started Types and using compiler</h1>
-<p>Working through types. </p>
+        <div class="ui tab segment lab" data-tab="Lab-05">
+          <h1>Voting Algorithm</h1>
+<p>We look at two different vote counting algorithms </p>
+<ul>
+<li>First past the post (candidate with maximum number of votes wins)</li>
+<li><p>Alternative Vote (One candidate will be elected, but voters get to vote for as many or as few candidates as they wish in order of their preference). To decide on a winner:</p>
+<ul>
+<li>empty ballots are removed</li>
+<li>then the candidates with the smallest number of votes is eliminated. </li>
+<li>this process is repeated until only one candidate remains. This candidate is declared the winner. </li>
+</ul>
+<p>This is from Programming in Haskell, Graham Hutton, 2 ed, Cambridge Press</p>
+</li>
+</ul>
 
         </div>
       
@@ -145,191 +156,68 @@ h3 {
           <h1>Objectives</h1>
 <p>On completion of this lab you should:</p>
 <ul>
-<li><p>Understand more about types</p>
-</li>
-<li><p>be familiar with the Haskell compiler and its error reporting.</p>
-</li>
+<li>have seen a voting algorithm working using Haskell</li>
 </ul>
 
         </div>
       
         <div class="ui tab segment lab" data-tab="02">
-          <h1>Naming Values Worksheet</h1>
+          <h1>First past the post</h1>
 <ul>
-<li>The purpose of this worksheet is for you to work through the worksheet. </li>
-<li>Copy and paste  the code into a .hs script. </li>
-<li>Load this script into GHCi. </li>
-<li>Go through the code, section by section.</li>
-<li><p>For example, for the first code snippet, replace the </p>
-<pre><code>pie = undefined</code></pre>
-<p>with </p>
-<pre><code>pie = 3.1416</code></pre>
-</li>
-<li><p>At each stage, test your change by </p>
-<ul>
-<li>reloading script</li>
-<li>testing values : e.g. for first snippet, simply type <pre><code>&gt; pie</code></pre>
-</li>
+<li>For information on First past the post see <a href="https://en.wikipedia.org/wiki/First-past-the-post_voting">https://en.wikipedia.org/wiki/First-past-the-post_voting</a></li>
 </ul>
-</li>
-<li>You should expect to get back the new value of pie.</li>
-</ul>
-<pre><code>--- Naming Values worksheet
+<pre><code>-- Voting algorithm example from chapter 7 of Programming in Haskell,
+-- Graham Hutton, Cambridge University Press, 2016.
 
+import Data.List
 
-------------------------------------------------
--- pi is a real number which is approximately
--- three and 1,416 ten thousandths. Define a Double
--- with this approximate value.
+-- First past the post
 
-pie:: Double               -- Mis-spelling deliberate
-pie = undefined
+votes :: [String]
+votes = [&quot;Red&quot;, &quot;Blue&quot;, &quot;Green&quot;, &quot;Blue&quot;, &quot;Blue&quot;, &quot;Red&quot;]
 
+count :: Eq a =&gt; a -&gt; [a] -&gt; Int
+count x = length . filter (== x)
 
---------------------------------------------------
--- The formula for the area of a circle is 
--- pie times r squared, where r is the radius of 
--- the circle. Define a Double which is the area 
--- in square centimeters of a circle with diameter 
--- 10 centimeters.
+rmdups :: Eq a =&gt; [a] -&gt; [a]
+rmdups []     = []
+rmdups (x:xs) = x : filter (/= x) (rmdups xs)
 
-areaCircleDiameter10:: Double
-areaCircleDiameter10 = undefined
+result :: Ord a =&gt; [a] -&gt; [(Int, a)]
+result vs = sort [(count v vs, v) | v &lt;- rmdups vs]
 
-
-----------------------------------------------
--- Define an Integer that is the number of 
--- seconds in a week.
-
-secondsIn1Week:: Integer
-secondsIn1Week = undefined
-
-
----------------------------------------------
--- Define a List of Integers with the elements
--- 1 to 10 in increasing order
-
-oneToTen:: [Integer]
-oneToTen = undefined
-
-
----------------------------------------------
--- Define a string that is your first name
-
-yourFirstName:: String
-yourFirstName = undefined
-
-
----------------------------------------------
--- Define an Integer that is your age
-
-yourAge:: Integer     
-yourAge = undefined
-
-
----------------------------------------------
--- Define a Bool truthvalue that is 
--- (yourAge is greater than 19) or (yourFirstName is &quot;Tim&quot;)
-
-compareName:: Bool
-compareName = undefined
-
-
----------------------------------------------
--- Define an Double that is the average of 
--- 3.0, 7.42, and 24.8
-
-average:: Double
-average = undefined
-
-
----------------------------------------------
--- Define an Integer that is the remainder
--- when 14563 is divided by 22. Hint use the 
--- &quot;mod&quot; operator. Try it out to see how it works
-
-remainder::Integer 
-remainder = undefined
-
-
----------------------------------------------
--- Define a tuple that has your first name 
--- and your age.
-
-tuple:: (String,Integer)
-tuple = undefined
-
-
----------------------------------------------
--- Compute the difference between your
--- approximation of pie, and the fraction
--- 22 divided by 7.
-
-difference:: Double
-difference = undefined</code></pre>
+winner :: Ord a =&gt; [a] -&gt; a
+winner = snd . last . result</code></pre>
 
         </div>
       
         <div class="ui tab segment lab" data-tab="03">
-          <h1>Implicit Types Worksheet</h1>
+          <h1>Alternative vote</h1>
 <ul>
-<li>The purpose of this worksheet is for you to work through the worksheet. </li>
-<li>Copy and paste  the code into a .hs script. </li>
-<li>Load this script into GHCi. </li>
-<li>Go through the code, section by section, reading the instructions. </li>
+<li>For information on Alternative vote see <a href="https://www.electoral-reform.org.uk/voting-systems/types-of-voting-system/alternative-vote/">https://www.electoral-reform.org.uk/voting-systems/types-of-voting-system/alternative-vote/</a> . We use a variant of it. </li>
 </ul>
-<pre><code>----------------------------------
--- add a type declaration
--- to each of the named expressions
-i1:: Integer  -- I have done the first one for you
-i1 = 45
+<pre><code>-- Alternative vote
 
-i2 = &quot;123&quot;
+ballots :: [[String]]
+ballots = [[&quot;Red&quot;,&quot;Green&quot;],
+           [&quot;Blue&quot;],
+           [&quot;Green&quot;,&quot;Red&quot;,&quot;Blue&quot;],
+           [&quot;Blue&quot;,&quot;Green&quot;,&quot;Red&quot;],
+           [&quot;Green&quot;]]
 
-i3 = 45 &lt;= i1
+rmempty :: Eq a =&gt; [[a]] -&gt; [[a]]
+rmempty = filter (/= [])
 
-i4 = &#39;c&#39;
+elim :: Eq a =&gt; a -&gt; [[a]] -&gt; [[a]]
+elim x = map (filter (/= x))
 
-i5 = [&quot;abc&quot;,&quot;ok&quot;]
+rank :: Ord a =&gt; [[a]] -&gt; [a]
+rank = map snd . result . map head
 
-i6 = head i5
-
-i7 = tail &quot;abc&quot;  -- Recall a string is a shorthand for a list of Char
-
-i8 = (True,4.5)
-
-i9 = [i1,34]
-
--------------------------------------------------
--- For each named expression replace &quot;undefined&quot;
--- with an expression with the same type as the declaration
-
-
-j1:: (String,Integer)
-j1 = undefined
-
-j2:: [Integer]
-j2 = undefined
-
-j3:: Char
-j3 = undefined
-
-
-j4:: Double
-j4 = undefined
-
-
-j5:: (Integer,String,Integer,Char)
-j5 = undefined
-
-j6:: ([Char],(Bool,String))
-j6 = undefined
-
-j7:: [[Bool]]
-j7 = undefined
-
-j8:: [(String,Bool)]
-j8 = undefined</code></pre>
+winner&#39; :: Ord a =&gt; [[a]] -&gt; a
+winner&#39; bs = case rank (rmempty bs) of
+                [c]    -&gt; c
+                (c:cs) -&gt; winner&#39; (elim c bs)</code></pre>
 
         </div>
       
