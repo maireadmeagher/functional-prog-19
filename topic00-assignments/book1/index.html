@@ -77,25 +77,13 @@ h3 {
   <header class="header item">
     <i id="toc" class="sitemap icon"></i>
     
-      <a href="../index.html">  Higher Order Functions  </a>
+      <a href="../index.html">  Assignments in Haskell  </a>
     
   </header>
   <div class="right tab-menu menu">
     
-      <a class="item" data-tab="Lab-05">
-        Lab-05
-      </a>
-    
-      <a class="item" data-tab="01">
-        01
-      </a>
-    
-      <a class="item" data-tab="02">
-        02
-      </a>
-    
-      <a class="item" data-tab="03">
-        03
+      <a class="item" data-tab="Assessment">
+        Assessment
       </a>
     
   </div>
@@ -150,89 +138,16 @@ h3 {
     <div class="ui basic segment">
       <br>
       
-        <div class="ui tab segment lab" data-tab="Lab-05">
-          <h1>Voting Algorithm</h1>
-<p>We look at two different vote counting algorithms </p>
-<ul>
-<li>First past the post (candidate with maximum number of votes wins)</li>
-<li><p>Alternative Vote (One candidate will be elected, but voters get to vote for as many or as few candidates as they wish in order of their preference). To decide on a winner:</p>
-<ul>
-<li>empty ballots are removed</li>
-<li>then the candidates with the smallest number of votes is eliminated. </li>
-<li>this process is repeated until only one candidate remains. This candidate is declared the winner. </li>
-</ul>
-<p>This is from Programming in Haskell, Graham Hutton, 2 ed, Cambridge Press</p>
-</li>
-</ul>
-
-        </div>
-      
-        <div class="ui tab segment lab" data-tab="01">
-          <h1>Objectives</h1>
-<p>On completion of this lab you should:</p>
-<ul>
-<li>have seen a voting algorithm working using Haskell</li>
-</ul>
-
-        </div>
-      
-        <div class="ui tab segment lab" data-tab="02">
-          <h1>First past the post</h1>
-<ul>
-<li>For information on First past the post see <a href="https://en.wikipedia.org/wiki/First-past-the-post_voting">https://en.wikipedia.org/wiki/First-past-the-post_voting</a></li>
-</ul>
-<pre><code>-- Voting algorithm example from chapter 7 of Programming in Haskell,
--- Graham Hutton, Cambridge University Press, 2016.
-
-import Data.List
-
--- First past the post
-
-votes :: [String]
-votes = [&quot;Red&quot;, &quot;Blue&quot;, &quot;Green&quot;, &quot;Blue&quot;, &quot;Blue&quot;, &quot;Red&quot;]
-
-count :: Eq a =&gt; a -&gt; [a] -&gt; Int
-count x = length . filter (== x)
-
-rmdups :: Eq a =&gt; [a] -&gt; [a]
-rmdups []     = []
-rmdups (x:xs) = x : filter (/= x) (rmdups xs)
-
-result :: Ord a =&gt; [a] -&gt; [(Int, a)]
-result vs = sort [(count v vs, v) | v &lt;- rmdups vs]
-
-winner :: Ord a =&gt; [a] -&gt; a
-winner = snd . last . result</code></pre>
-
-        </div>
-      
-        <div class="ui tab segment lab" data-tab="03">
-          <h1>Alternative vote</h1>
-<ul>
-<li>For information on Alternative vote see <a href="https://www.electoral-reform.org.uk/voting-systems/types-of-voting-system/alternative-vote/">https://www.electoral-reform.org.uk/voting-systems/types-of-voting-system/alternative-vote/</a> . We use a variant of it. </li>
-</ul>
-<pre><code>-- Alternative vote
-
-ballots :: [[String]]
-ballots = [[&quot;Red&quot;,&quot;Green&quot;],
-           [&quot;Blue&quot;],
-           [&quot;Green&quot;,&quot;Red&quot;,&quot;Blue&quot;],
-           [&quot;Blue&quot;,&quot;Green&quot;,&quot;Red&quot;],
-           [&quot;Green&quot;]]
-
-rmempty :: Eq a =&gt; [[a]] -&gt; [[a]]
-rmempty = filter (/= [])
-
-elim :: Eq a =&gt; a -&gt; [[a]] -&gt; [[a]]
-elim x = map (filter (/= x))
-
-rank :: Ord a =&gt; [[a]] -&gt; [a]
-rank = map snd . result . map head
-
-winner&#39; :: Ord a =&gt; [[a]] -&gt; a
-winner&#39; bs = case rank (rmempty bs) of
-                [c]    -&gt; c
-                (c:cs) -&gt; winner&#39; (elim c bs)</code></pre>
+        <div class="ui tab segment lab" data-tab="Assessment">
+          <h1>Lab Class test</h1>
+<h2>Aim</h2>
+<p>To test your level of competance with GHCI and basic Haskell</p>
+<h2>Marks</h2>
+<p>This will be worth 5%. </p>
+<h2>Task</h2>
+<p>You will be give code and also you will be give the prelude.hs file <a href="./archives/haskell_lab_test/prelude.hs">prelude.hs</a> containing all the Prelude library functions. </p>
+<p>You will be given a zip file with haskell source files and you will be asked to complete them and upload them on Moodle. 
+An sample exam is given <a href="./archives/haskell_lab_test.zip">here</a></p>
 
         </div>
       
