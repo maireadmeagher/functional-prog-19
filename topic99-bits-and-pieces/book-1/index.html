@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css"
+        type="text/css">
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-light.min.css"
+        rel="stylesheet"/>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script type="text/javascript"
+          src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+  <script type="text/javascript"
+          src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+  <script type="text/javascript"
+          src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script type="text/javascript"
+          src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+  <script type="text/javascript"
+          src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/kotlin.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <style>
+    
+
+body {
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+  font-size:90%;
+  color: black;
+}
+
+p {
+  margin: 0.5em;
+}
+
+pre code {
+  font-family: "Monaco";
+  font-size: 100%;
+}
+
+img {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin:10px;
+}
+
+h1, h2, h3 {
+  border-bottom:thin solid black;
+  margin-bottom: 0.5em;
+  margin-top: 1em;
+}
+
+h1 {
+  font-style:italic;
+  font-size:130%;
+}
+
+h2 {
+  font-size:110%;
+}
+
+h3 {
+  font-size:100%;
+}
+
+
+
+  </style>
+</head>
+
+<body>
+
+
+
+<div class="ui fixed top pointing inverted stackable menu labmenu">
+  <header class="header item">
+    <i id="toc" class="sitemap icon"></i>
+    
+      <a href="../index.html">  Bits and Pieces  </a>
+    
+  </header>
+  <div class="right tab-menu menu">
+    
+      <a class="item" data-tab="Lab-06">
+        Lab-06
+      </a>
+    
+      <a class="item" data-tab="01">
+        01
+      </a>
+    
+      <a class="item" data-tab="02">
+        02
+      </a>
+    
+      <a class="item" data-tab="03">
+        03
+      </a>
+    
+  </div>
+</div>
+
+<div class="ui pushable">
+  <div class="ui inverted labeled icon left inline vertical sidebar menu">
+    <br><br>
+    
+      
+        <a class="item"
+           href="http://maireadmeagher.github.io/haskell-19//topic00-assignments/book1/index.html">Assessment </a>
+      
+    
+      
+        <a class="item"
+           href="http://maireadmeagher.github.io/haskell-19//topic01-introduction/book/index.html">Links </a>
+      
+    
+      
+        <a class="item"
+           href="http://maireadmeagher.github.io/haskell-19//topic02-first-steps/book/index.html">Lab-01 </a>
+      
+    
+      
+        <a class="item"
+           href="http://maireadmeagher.github.io/haskell-19//topic03-types-and-classes/book1/index.html">Lab-02 </a>
+      
+    
+      
+        <a class="item"
+           href="http://maireadmeagher.github.io/haskell-19//topic03-types-and-classes/book2/index.html">Lab-03 </a>
+      
+    
+      
+        <a class="item"
+           href="http://maireadmeagher.github.io/haskell-19//topic07-higher-order-functions/book/index.html">Lab-04 </a>
+      
+    
+      
+        <a class="item"
+           href="http://maireadmeagher.github.io/haskell-19//topic09-declaring-types-and-classes/book/index.html">Lab-05 </a>
+      
+    
+      
+        <a class="item"
+           href="http://maireadmeagher.github.io/haskell-19//topic99-bits-and-pieces/book-1/index.html">Lab-06 </a>
+      
+    
+  </div>
+  <div class="pusher" tabindex="-1">
+    <div class="ui basic segment">
+      <br>
+      
+        <div class="ui tab segment lab" data-tab="Lab-06">
+          <h1>Using Trace to Debug Programs</h1>
+<p>Importing library and using trace in programs</p>
+
+        </div>
+      
+        <div class="ui tab segment lab" data-tab="01">
+          <h1>Objectives</h1>
+<p>On completion of this lab you should:</p>
+<ul>
+<li><p>be able to use trace, traceShow etc. to debug programs</p>
+</li>
+<li><p>be better able to understand the running of programs using debug</p>
+</li>
+</ul>
+
+        </div>
+      
+        <div class="ui tab segment lab" data-tab="02">
+          <h1>Using Trace</h1>
+<ul>
+<li>We look at one function, multby2 which takes a list and multiplies all elements in the list by 2. </li>
+</ul>
+<pre><code>
+import Debug.Trace
+
+multby2 :: Num a=&gt; [a] -&gt; [a]
+multby2 [] = []
+multby2 (x:xs) = x*2 : multby2 xs
+
+multby2&#39; :: Num a=&gt; [a] -&gt; [a]
+multby2&#39; [] = trace &quot;running on empty&quot; []
+multby2&#39; (x:xs) = trace &quot;recursing&quot; x*2 : multby2 xs
+
+--Note use of (Num a, Show a) here - we need to use show. 
+multby2&#39;&#39; :: (Num a, Show a)=&gt; [a] -&gt; [a]
+multby2&#39;&#39; [] = trace &quot;running on empty&quot; []
+multby2&#39;&#39; (x:xs) = trace (&quot;value of x = &quot;  ++ show x)  x*2 : multby2 xs</code></pre>
+
+        </div>
+      
+        <div class="ui tab segment lab" data-tab="03">
+          <h1>Using trace in functions</h1>
+<h2>Exercise 1</h2>
+<p>Write a recursive function to calculate factorial. Use trace to see how it works.</p>
+<h2>Exercise 2</h2>
+<p>The following sort is bugged. Using trace to help you, fix it. </p>
+<pre><code>
+sort :: Ord a =&gt; [a] -&gt; [a]
+sort ( x : xs ) = insert x ( sort xs )
+insert :: Ord a =&gt; a -&gt; [a] -&gt; [a]
+insert x [ ] = [ x ]
+insert x ( y : ys ) = if  x &lt;= y   then (x : ys)   else y : insert x ( y : ys )</code></pre>
+
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).on('keydown', function(e) {
+  e = e || window.event;
+  var nextTab;
+  switch (e.which || e.keyCode) {
+    case 37: // left
+      nextTab = $('.tab-menu a[data-tab].active').prev('a[data-tab]');
+      if (!nextTab.length) nextTab = $('.tab-menu a[data-tab]').last();
+      nextTab.click();
+      $('.pusher').focus();
+      break;
+
+    case 39: // right
+      nextTab = $('.tab-menu a[data-tab].active').next('a[data-tab]');
+      if (!nextTab.length) nextTab = $('.tab-menu a[data-tab]').first();
+      nextTab.click();
+      $('.pusher').focus();
+      break;
+  }
+});
+
+  $(document).ready(function() {
+  $('img').addClass('ui image');
+
+  $('.ui.embed').embed();
+
+  const $images = $('.lab img');
+  jQuery.each($images, function(i) {
+    if ($images[i].alt.length > 0) {
+      const divImg = $(document.createElement('div')).addClass(
+        'ui basic segment',
+      );
+      $($images[i]).wrap(divImg);
+      const divLabel = $(document.createElement('div')).addClass(
+        'ui blue ribbon label',
+      );
+      divLabel.append($images[i].alt);
+      $(divLabel).insertBefore($images[i]);
+    }
+  });
+
+  $('.ui.menu .item').tab({
+    history: true,
+    historyType: 'hash',
+  });
+
+  $('.popup').popup();
+
+  $('.ui.sidebar')
+    .sidebar({ context: $('.pushable') })
+    .sidebar('setting', 'transition', 'slide out')
+    .sidebar('attach events', '#toc');
+});
+
+</script>
+</body>
+</html>
